@@ -1,24 +1,15 @@
 
 <div class="" role="main">
 
-  <h1>NgxCSVParser by <a href="">Developers Hive</a></h1>
-  <div class="csv-file-chooser-section">
+  <h1 class="blockquote text-center">CSV file chooser <a href="https://github.com/Arcsinista64/csv-parser">code & file example here!</a></h1>
+  <div class="">
 
-  <input type="file" #fileImportInput name="File Upload" id="csvFileUpload" (change)="fileChangeListener($event)"
-      accept=".csv" />
-
-      <div>
-        <!-- <button type="button" class="btn btn-md btn-outline-dark" (click)="openModalAgregar();"><span> Generar tabla con filtros </span><fa-icon class="select" [icon]="faPlus"></fa-icon>
-        </button> -->
-        <!-- <button type="button" (click)="duplicados2(array)"><span> Generar tabla con filtros </span></button> -->
-      </div>
+  <input class="content button btn btn-light" type="file" #fileImportInput name="File Upload" id="csvFileUpload" (change)="fileChangeListener($event)" accept=".csv" />
   </div>
 
   <div class="content">
-
-
-    <table>
-      <thead>
+    <table class="table center">
+      <thead class="thead-light">
         <tr>
           <th>#</th>
           <th>Name</th>
@@ -50,32 +41,8 @@
 
   
   <div class="content">
-
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let csvData of repetidos;let i = index;">
-
-          <td>{{i+1}}</td>
-          <td>
-            <!-- <span *ngIf=”seRepite()”>{{csvData.nombre}}</span> -->
-            <span>{{csvData.nombre}}</span>
-          </td>
-          <td>
-            <span>{{csvData.correoElectronico}}</span>
-          </td>
-          <td>
-            <span>{{csvData.telefono}}</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <p class="text-primary text-right font-weight-bolder">Juan Antonio García Ruiz</p>
+    <p class="text-primary text-right ">ing.garciaruiz.9707@gmail.com</p>
+    <p class="text-primary text-right ">garj1625667@uanl.edu.mx</p>
   </div>
 </div>

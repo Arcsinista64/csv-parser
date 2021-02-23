@@ -17,43 +17,6 @@ export class TablasComponent implements OnInit {
 
   csvRecords: Registro[] = [];
   header = true;
-  seRepite: boolean;
-
-  // nombres: string[] = [];
-  // correosElectronicos: string[] = [];
-  // numerosTelefonicos: string[] = [];
-
-
-
-      // evaluarRepetidos(registro: Registro)
-      // {
-      //   // console.log("test" + registro);
-      //   // for(var item in registro)
-      //   // {
-      //   //     this.nombres.push(registro.nombre);
-      //   //     this.correosElectronicos.push(registro.correoElectronico);
-      //   //     this.numerosTelefonicos.push(registro.telefono);
-      //   // }
-      // }
-
-
-      // duplicados(csvRecords: Registro[])
-      // {
-      //   var array = csvRecords;
-      //   let newArray = [];
-      //   array.forEach(elem=>{
-      //     // verificamos si existe en el nuevo array , comparando su dos componentes
-      //     // posición 0 y 1 , si no existe, añadimos el emenento al array
-      //     if(!array.some(valor=> valor[0] === elem[0]))
-      //     {
-      //       //newArray.push(elem);
-      //     }
-      //     else 
-      //     {
-                    
-      //     }
-      //   })
-      // }
 
       duplicados(csvRecords: Registro[])
       {
@@ -61,7 +24,9 @@ export class TablasComponent implements OnInit {
           var repetidos = [];
           const eliminarRepetidos = (array) => {
           var unicos = [];
-          var itemsEncontrados = {};
+          var itemsEncontrados = [];
+          var itemsRepetidos = [];
+
           for(var i = 0, l = array.length; i < l; i++) {
               var stringified = JSON.stringify(array[i].nombre);
               var stringified2 = JSON.stringify(array[i].correoElectronico);
@@ -71,7 +36,9 @@ export class TablasComponent implements OnInit {
               { 
                 repetidos.push(array[i]);
                 array[i] = {nombre: array[i].nombre, correoElectronico: array[i].correoElectronico, telefono: array[i].telefono, duplicado: true }
-
+                itemsRepetidos[stringified] = true; 
+                itemsRepetidos[stringified2] = true; 
+                itemsRepetidos[stringified3] = true; 
               }
               else
               {
@@ -81,16 +48,27 @@ export class TablasComponent implements OnInit {
               itemsEncontrados[stringified2] = true; 
               itemsEncontrados[stringified3] = true; 
           }
+          
+          for(var i = 0, l = array.length; i < l; i++)
+          {
+              var stringified = JSON.stringify(array[i].nombre);
+              var stringified2 = JSON.stringify(array[i].correoElectronico);
+              var stringified3 = JSON.stringify(array[i].telefono);
+
+            if(itemsRepetidos[stringified] || itemsRepetidos[stringified2] || itemsRepetidos[stringified3]) 
+            {
+              array[i] = {nombre: array[i].nombre, correoElectronico: array[i].correoElectronico, telefono: array[i].telefono, duplicado: true }
+            }
+          }
           console.log("Unicos");
           console.log(unicos);
       }
-
       let arrayFiltrado = eliminarRepetidos(array);
+      
       console.log("Repetidos");
-
       console.log(repetidos);
+      console.log(array);
       }
-
   
   constructor(private ngxCsvParser: NgxCsvParser) {
   }
@@ -116,11 +94,5 @@ export class TablasComponent implements OnInit {
       }, (error: NgxCSVParserError) => {
         console.log('Error', error);
       });
-
-      
-
-
   }
-
-  
 }
