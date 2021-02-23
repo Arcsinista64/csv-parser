@@ -1,0 +1,11 @@
+.content
+{
+    display: inline-grid;
+    width: 40%;
+    margin-left: 5%;
+}
+
+.duplicado
+{
+    color: red;
+}
